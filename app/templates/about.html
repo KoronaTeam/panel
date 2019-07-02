@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+          {% block mainTitle %}
+            <h1>O mnie</h1>
+            <span class="subheading">Pytacie, skąd się wziąłem?</span>
+          {% endblock %}
+
+  <!-- Page Header -->
+    {% block header %}
+      <header class="masthead" style="background-image: url('{{ url_for ('static', filename= 'moto.jpg')}}')">
+    {% endblock %}
+  
+  <!-- Main Content -->
+
+        {% block content %}
+<p>Mam na imię Maciej. Jestem studentem drugiego roku Informatyki na studiach niestacjonarnych
+w Państwowej Wyższej Szkole Zawodowej w Elblągu.
+</p>
+
+        {% endblock %}

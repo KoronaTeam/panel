@@ -1,0 +1,52 @@
+{% extends "index.html" %}
+
+          {% block mainTitle %}
+            <h1>Dodaj notkę</h1>
+            <span class="subheading">Przelej swoje myśli na ekran.</span>
+          {% endblock %}
+
+  <!-- Page Header -->
+    {% block header %}
+      <header class="masthead" style="background-image: url('{{ url_for ('static', filename= '3.jpg')}}')">
+    {% endblock %}
+            
+
+
+  <!-- Main Content -->
+      {% block content %}
+        <form name="addForm" id="addForm" method="POST" action="{{ url_for('addpost') }}" novalidate>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Tytuł</label>
+              <input type="text" class="form-control" placeholder="Tytuł" name="title" id="title" required data-validation-required-message="Wpisz tytuł notki">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Podtytuł</label>
+              <input type="text" class="form-control" placeholder="Podtytuł" name="subtitle" id="subtitle" required data-validation-required-message="Wpisz podtytuł notki">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>Autor</label>
+              <input type="text" class="form-control" placeholder="Autor" name="author" id="author" required data-validation-required-message="Wpisz swoje imię lub pseudonim">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Treść</label>
+              <textarea rows="5" class="form-control" placeholder="Treść" name="content" id="content" required data-validation-required-message="Wpisz treść notki"></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <br>
+          <div id="success"></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="sendMessageButton">Dodaj</button>
+          </div>
+        </form>
+    {% endblock %}
