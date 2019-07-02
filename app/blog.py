@@ -11,7 +11,7 @@ from flask_login import LoginManager, UserMixin, login_required, login_user, log
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Maciej\\Moje\\_Studia\\Semestr_4\\PwJS\\Python\\MaciejRawwoBlog\\app\\blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config.update(
         DEBUG=True,
         SECRET_KEY='bardzotajnyklucz')
