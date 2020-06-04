@@ -1,20 +1,22 @@
 {% extends "index.html" %}
 
           {% block mainTitle %}
-            <h1>O mnie</h1>
-            <span class="subheading">Pytacie, skąd się wziąłem?</span>
+            <h1>Obout A.S.M project</h1>
+            <span class="subheading">Created by KoronaTeam</span>
           {% endblock %}
 
   <!-- Page Header -->
     {% block header %}
-      <header class="masthead" style="background-image: url('{{ url_for ('static', filename= 'moto.jpg')}}')">
+        <header class="masthead" style="background-image: url('{{ url_for ('static', filename= 'korona-logo.png')}}'); background-color:#20c997; background-size: auto; background-position: right">
     {% endblock %}
   
   <!-- Main Content -->
 
         {% block content %}
-<p>Mam na imię Maciej. Jestem studentem drugiego roku Informatyki na studiach niestacjonarnych
-w Państwowej Wyższej Szkole Zawodowej w Elblągu.
-</p>
+            <p>KoronaTeam consists of four PWSZ students:</p>
+            <p>Radosław Kłos,</p>
+            <p>Julian Filip,</p>
+            <p>Dominik Kuzaka</p>
+            <p>and Maciej Rawwo.</p>
 
         {% endblock %}

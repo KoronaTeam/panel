@@ -11,7 +11,7 @@
   {% if tytul %}
     <title>{{tytul}}</title>
     {% else %}
-    <title>Strona Główna</title>
+    <title>S.A.M Admin Main Page</title>
   {% endif %}
 
   <!-- Bootstrap core CSS -->
@@ -32,7 +32,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="{{ url_for('index') }}">Maciej Rawwo</a>
+      <a class="navbar-brand" href="{{ url_for('index') }}">KoronaTeam</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -40,21 +40,22 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('index') }}">Strona główna</a>
+            <a class="nav-link" href="{{ url_for('index') }}">Main page</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('about') }}">O mnie</a>
-          </li>
+
           {% if current_user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('add') }}">Dodaj notkę</a>
+            <a class="nav-link" href="{{ url_for('add') }}">Add User</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('logout') }}">Wyloguj się</a>
+            <a class="nav-link" href="{{ url_for('logout') }}">Log out</a>
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('login') }}">Zaloguj się</a>
+            <a class="nav-link" href="{{ url_for('login') }}">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('about') }}">About project</a>
           </li>
           {% endif %}
         </ul>
@@ -64,7 +65,7 @@
 
   <!-- Page Header -->
   {% block header %}
-  <header class="masthead" style="background-image: url('{{ url_for ('static', filename= '1.png')}}')">
+  <header class="masthead" style="background-image: url('{{ url_for ('static', filename= 'korona-logo.png')}}'); background-color:#f44336; background-size: auto; background-position: left">
   {% endblock %}
     <div class="overlay"></div>
     <div class="container">
@@ -72,9 +73,9 @@
         <div class="col-lg-12 col-md-8 mx-auto">
           <div class="site-heading">
           {% block mainTitle %}
-            <h1>Mój Pierwszy Blog</h1>
-            <span class="subheading">Python + Flask + SQLAlchemy</span>
-            <span class="subheading">HTML + CSS + JS + Bootstrap</span>
+            <h1>S.A.M Administration Panel</h1>
+            <span class="subheading">Create users</span>
+            <span class="subheading">Check quarantine status</span>
           {% endblock %}  
           </div>
         </div>
@@ -86,10 +87,15 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        {% block content %}
+          {% block content %}
+              {% if userId == 0048 %}
+                  <h1></h1>
+              {% else %}
+                  <h1>user ID: {{ userId }}</h1>
+              {% endif %}
             {% for post in posts %}
             <div class="post-preview">
-              <a href="{{ url_for ('post', post_id=post.id) }}">
+                <a href="{{ url_for ('post', post_id=post.id) }}">
                 <h2 class="post-title">
                   {{ post.title }}
                 </h2>
@@ -97,13 +103,13 @@
                   {{ post.subtitle }}
                 </h3>
               </a>
-              <p class="post-meta">Posted by
+              <p class="post-meta">Added by
                 {{ post.author }}
                 on {{ post.date_posted.strftime('%d %B %Y, %X') }}</p>
            </div>
         <hr>
             {% endfor %}
-        {% endblock %}
+          {% endblock %}
 
 
       </div>
@@ -118,7 +124,7 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
 
-          <p class="copyright text-muted">Copyright &copy; Mój Pierwszy Blog 2019</p>
+          <p class="copyright text-muted">Copyright &copy; KoronaTeam 2020</p>
         </div>
       </div>
     </div>

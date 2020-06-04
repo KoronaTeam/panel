@@ -1,7 +1,7 @@
 {% extends "index.html" %}
   <!-- Page Header -->
       {% block header %}
-          <header class="masthead" style="background-image: url('{{ url_for ('static', filename= '2.jpg')}}')">
+          <header class="masthead" style="background-image: url('{{ url_for ('static', filename= 'korona-logo.png')}}'); background-color:#007bff; background-size: auto; background-position: left">
     {% endblock %}
     
           {% block mainTitle %}
@@ -21,11 +21,11 @@
         
          <div class="row">
          <button type="button" class="btn btn-light" data-toggle="modal" data-target="#deletePost">
-          Usuń wpis
+          Delete user
          </button>
           <form action="{{ url_for('edit', post_id=post.id) }}" method="POST">
                          <input type="hidden" value="{{ post.id }}" name="post_id">
-                         <input type="submit" value="Edytuj post" class="btn btn-light">
+                         <input type="submit" value="Edit user data" class="btn btn-light">
           </form>
           </div>
             <!-- Modal -->
@@ -33,21 +33,21 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="deletePostLabel">Usuwanie wpisu</h5>
+                    <h5 class="modal-title" id="deletePostLabel">Deleting user</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                  Czy na pewno usunąć -> {{ post.title }} ?
+                  Delete user -> {{ post.title }} ?
                   </div>
                   <div class="modal-footer">
                   
-                    <button type="button" class="btn btn-success" data-dismiss="modal">Nie, jednak nie.</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">CANCEL</button>
                     
                     <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
                          <input type="hidden" value="{{ post.id }}" name="post_id">
-                         <input type="submit" value="Tak, usuń" class="btn btn-danger">
+                         <input type="submit" value="DELETE" class="btn btn-danger">
                     </form>
                     
                   </div>

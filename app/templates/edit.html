@@ -1,13 +1,13 @@
 {% extends "index.html" %}
 
           {% block mainTitle %}
-            <h1>Edycja notki</h1>
+            <h1>Edit user data</h1>
             <span class="subheading">{{ post.title }}</span>
           {% endblock %}
 
   <!-- Page Header -->
     {% block header %}
-      <header class="masthead" style="background-image: url('{{ url_for ('static', filename= '3.jpg')}}')">
+      <header class="masthead" style="background-image: url('{{ url_for ('static', filename= 'korona-logo.png')}}'); background-color:#8fd19e; background-size: auto; background-position: left">
     {% endblock %}
             
 
@@ -17,28 +17,28 @@
         <form name="addForm" id="addForm" method="POST" action="{{ url_for('editpost', post_id=post.id) }}" novalidate>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
-              <label>Tytuł</label>
+              <label>Name</label>
               <input type="text" class="form-control" placeholder="Tytuł" name="title" id="title" required data-validation-required-message="Wpisz tytuł notki" value="{{ post.title }}">
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
-              <label>Podtytuł</label>
+              <label>User ID</label>
               <input type="text" class="form-control" placeholder="Podtytuł" name="subtitle" id="subtitle" required data-validation-required-message="Wpisz podtytuł notki" value="{{ post.subtitle }}">
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <div class="control-group">
             <div class="form-group col-xs-12 floating-label-form-group controls">
-              <label>Autor</label>
+              <label>Admin name</label>
               <input type="text" class="form-control" placeholder="Autor" name="author" id="author" required data-validation-required-message="Wpisz swoje imię lub pseudonim" value="{{ post.author }}">
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
-              <label>Treść</label>
+              <label>Some other stuff</label>
               <textarea rows="5" class="form-control" placeholder="Treść" name="content" id="content" required data-validation-required-message="Wpisz treść notki">{{ post.content }}</textarea>
               <p class="help-block text-danger"></p>
             </div>
@@ -46,7 +46,7 @@
           <br>
           <div id="success"></div>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">Zapisz</button>
+            <button type="submit" class="btn btn-primary" id="sendMessageButton">Save</button>
           </div>
         </form>
     {% endblock %}

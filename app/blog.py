@@ -4,7 +4,7 @@ Created on Mon Jun 10 18:15:33 2019
 
 @author: Maciej
 """
-from flask import Flask, render_template, url_for, request, redirect, abort
+from flask import Flask, render_template, url_for, request, redirect, abort, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
@@ -28,6 +28,8 @@ def load_user(userid):
     return User(userid)
 
 
+global userData
+
 # modelużytkownika
 class User(UserMixin):
     def __init__(self,id):
@@ -43,7 +45,7 @@ users=[User(id) for id in range(1,10)]
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    title= 'Zaloguj się'
+    title= 'Log in'
     if request.method=='POST':
         username = request.form['username']
         password=request.form['password']
@@ -61,7 +63,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    tytul="Wylogowanie"
+    tytul="Logout"
     return render_template('logout.html', tytul=tytul)
 
 class Blogpost(db.Model):
@@ -79,9 +81,8 @@ def index():
     
 @app.route('/about')
 def about():
-    title="O mnie"
-    image="3.jpg"
-    return render_template('about.html', bg_image=image, tytul=title)
+    title="About our project"
+    return render_template('about.html', tytul=title)
 
 @app.route('/post/<int:post_id>')
 def post(post_id):
@@ -134,6 +135,32 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     return redirect(url_for('index'))
-    
+
+@app.route("/json", methods=["POST"])
+def json():
+    if request.is_json:
+        req = request.get_json()
+        response = {
+            "UserID": req.get("username"),
+            "Hasło": req.get("password"),
+            "Adres e-mail": req.get("email"),
+            "Imię": req.get("firstName"),
+            "Nazwisko": req.get("lastName")
+        }
+        print(response)
+        post = Blogpost(title=response.get("UserID"), subtitle=response.get("Nazwisko"), author=response.get("Imię"), content=response.get("Hasło"), date_posted=datetime.now())
+
+        db.session.add(post)
+        db.session.commit()
+
+        res = make_response(jsonify(response), 200)
+
+        return render_template('index.html', userId=response.get("UserID"))
+    else:
+        res = make_response(jsonify({"message": "No JSON received!"}), 400)
+        return res
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)

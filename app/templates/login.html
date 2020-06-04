@@ -1,8 +1,8 @@
 {% extends "index.html" %}
 
 {% block mainTitle %}
-            <h2>Logowanie</h2>
-            <span class="subheading">Jeśli jesteś mną, to możesz dodawać i usuwać notki.</span>
+            <h2>Log in</h2>
+            <span class="subheading">Log in to be able to edit data</span>
           {% endblock %}
 
 {% block header %}
@@ -12,12 +12,12 @@
 {% block content %}
 
 <div class="starter-template">
- <p class="lead">Podaj login oraz hasło aby móc dodawać i usuwać notki.</p>
+ <p class="lead">Enter credentials:</p>
 
     <form action="{{ url_for('login') }}" method="post">
          <p>Login: <input type=text name=username>
-         <p>Hasło: <input type=password name=password>
-         <p><input type=submit value=Zaloguj>
+         <p>Password: <input type=password name=password>
+         <p><input type=submit value=Login>
      </form>
  
  </div>
