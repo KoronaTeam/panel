@@ -11,7 +11,7 @@
     {% if tytul %}
         <title>{{ tytul }}</title>
     {% else %}
-        <title>S.A.M Admin Main Page</title>
+        <title>S.A.M Admin User View Page</title>
     {% endif %}
 
     <!-- Bootstrap core CSS -->
@@ -49,12 +49,9 @@
 
                 {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('userView') }}">User view</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('add') }}">Add User</a>
                     </li>
-                    <li class="nav-item">
+                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('addq') }}">Set Quarantine</a>
                     </li>
                     <li class="nav-item">
@@ -76,7 +73,7 @@
 <!-- Page Header -->
 {% block header %}
     <header class="masthead"
-            style="background-image: url('{{ url_for ('static', filename= 'korona-logo.png') }}'); background-color:#f44336; background-size: auto; background-position: left">
+            style="background-image: url('{{ url_for ('static', filename= 'korona-logo.png') }}'); background-color:#20c997; background-size: auto; background-position: left">
 {% endblock %}
 <div class="overlay"></div>
 <div class="container">
@@ -97,25 +94,37 @@
 <!-- Main Content -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-lg-12 col-md-12 mx-auto">
             {% block content %}
-                <h1>Choose page from navigation menu</h1>
-                {% for post in posts %}
-                    <div class="post-preview">
-                        <a href="{{ url_for ('post', post_id=post.id) }}">
-                            <h2 class="post-title">
-                                {{ post.title }}
-                            </h2>
-                            <h3 class="post-subtitle">
-                                {{ post.subtitle }}
-                            </h3>
-                        </a>
-                        <p class="post-meta">Added by
-                            {{ post.author }}
-                            on {{ post.date_posted.strftime('%d %B %Y, %X') }}</p>
-                    </div>
-                    <hr>
-                {% endfor %}
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th colspan="5">User</th>
+                        <th colspan="2">Quarantine</th>
+                    </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">System user name</th>
+                        <th scope="col">E-mail address</th>
+                        <th scope="col">Start</th>
+                        <th scope="col">End</th>
+                    </tr>
+                    </thead>
+                    {% for item in data %}
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.lastName }}</td>
+                            <td>{{ item.firstName }} </td>
+                            <td>{{ item.username }}</td>
+                            <td>{{ item.email }}</td>
+                            <td>{{ item.quarantine.startDate }}</td>
+                            <td>{{ item.quarantine.endDate }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
             {% endblock %}
 
 

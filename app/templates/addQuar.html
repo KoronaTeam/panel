@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+
+          {% block mainTitle %}
+            <h1>Set quarantine</h1>
+            <span class="subheading">Enter data for new quarantine</span>
+          {% endblock %}
+
+  <!-- Page Header -->
+    {% block header %}
+      <header class="masthead" style="background-image: url('{{ url_for ('static', filename= 'korona-logo.png')}}'); background-color:#17a2b8; background-size: auto; background-position: left">
+    {% endblock %}
+            
+
+
+  <!-- Main Content -->
+      {% block content %}
+        <form name="addQForm" id="addQForm" method="POST" action="{{ url_for('addquar') }}" novalidate>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>User ID</label>
+              <input type="number" class="form-control" placeholder="User ID" name="userId" id="fName" required data-validation-required-message="Enter user's ID number">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Quarantine start date</label>
+              <input type="datetime-local" class="form-control" placeholder="Quarantine start date" name="startDate" id="startDate" required data-validation-required-message="Enter start date of quarantine">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>Quarantine end date</label>
+              <input type="datetime-local" class="form-control" placeholder="Quarantine end date" name="endDate" id="endDate" required data-validation-required-message="Enter end date of quarantine">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+
+          <br>
+          <div id="success"></div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="sendMessageButton">Set</button>
+          </div>
+        </form>
+    {% endblock %}
